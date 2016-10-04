@@ -1,0 +1,3 @@
+创建js Object类型的两种方法 使用Object 构造函数var obj=  new Object() ;obj.name='name'  使用对象字面量 var obj={};obj.name='name' &var obj={'name':'name'}
+       在访问对象时我们可以使用 obj.name 即点号 也可以使用尖括号obj[name] 在使用尖括号时候 我们可以使用传入变量来替代 当变量有空格时 我们就不能使用.来得到属性的值
+                            

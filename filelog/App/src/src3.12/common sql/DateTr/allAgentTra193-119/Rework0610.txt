@@ -1,0 +1,78 @@
+ select *into dcPegFTOrdersMPTemp193   from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersMP) 
+  select * into  dcPegFTOrdersXITemp193   from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersXI)
+ select *  into  dcPegMHOrdersMPTemp193 from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersMP) 
+  select *into dcPegMHOrdersXITemp193   from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersXI)
+ select *into dcPegMHOrdersRejTemp193  from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersRej) 
+
+
+
+ Truncate table  dcPegFTOrdersMP
+ Truncate table  dcPegFTOrdersXI
+ Truncate table  dcPegMHOrdersMP
+ Truncate table  dcPegMHOrdersXI
+ Truncate table  dcPegMHOrdersRej
+
+
+-- Truncate table  rdOFTOrders
+--------
+
+ insert into   dcPegFTOrdersMP  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersMP) 
+  insert into  dcPegFTOrdersXI   select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersXI)
+   insert into   dcPegMHOrdersMP  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersMP) 
+  insert into  dcPegMHOrdersXI   select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersXI)
+   insert into   dcPegMHOrdersRej  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersRej) 
+
+
+   Truncate table  rfSPCProductMaster
+  
+  insert into rfSPCProductMaster (
+ProductID,
+ProductDesc,
+ServiceType,
+BizProductType,
+ProductFamily,
+ListPrice,
+ServiceSpeed,
+
+ListPriceWiGST2,
+PayableInd,
+DiscInd,
+BizProductGroup,
+CreatedBatchNo,
+CreatedDate,
+UpdatedBatchNo,
+UpdatedDate,
+ConfiguredBy,
+ConfiguredDate,
+StartDate,
+EndDate,
+HandlingFee
+
+  )
+  select 
+  
+  ProductID,
+ProductDesc,
+ServiceType,
+BizProductType,
+ProductFamily,
+ListPrice,
+ServiceSpeed,
+
+ListPriceWiGST2,
+PayableInd,
+DiscInd,
+BizProductGroup,
+CreatedBatchNo,
+CreatedDate,
+UpdatedBatchNo,
+UpdatedDate,
+ConfiguredBy,
+ConfiguredDate,
+StartDate,
+EndDate,
+HandlingFee
+
+
+from
+  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.rfSPCProductMaster) 

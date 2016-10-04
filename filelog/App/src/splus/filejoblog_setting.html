@@ -1,0 +1,36 @@
+<div ng-controller="filejoblog.setting">
+    <div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h3">UI Selects</h1>
+    </div>
+    <div class="wrapper-md">       
+        <div ng-repeat="jobTable in jobMacthTables">
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label"><label ng-class="{'badge bg-success':jobTable.tableName!=undefined}">{{jobTable.jobName}}</label></label>
+                <div class="col-sm-6">
+                    <div class="input-group m-b">
+                        <select ng-change="toChangeJobName(jobTable)" class="form-control" ng-model="jobTable.tableName">
+                            <option ng-disabled="jobTable.tableName != r.tableName && r.jobName !=undefined" ng-selected="toMackeSelected(jobTable.tableName,r.tableName)" ng-value="r.tableName" ng-repeat="r in allCanSelectTables">{{r.tableName}}</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button ng-click="toChangeJobName(jobTable,true)" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="$last" class="line line-dashed b-b line-lg pull-in"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                <span></span>
+                <button ng-click="toSave()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

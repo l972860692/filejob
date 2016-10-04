@@ -1,0 +1,1 @@
+js函数声明与表达式(function sum(){}) 注意（在表达式后面带上分号; var sum=function(){}）。函数声明的会率先被解析器解析。所以 sum(10,20);function sum(a,b){return a+b;}会被正确解析执行 而使用函数表达式则不能！

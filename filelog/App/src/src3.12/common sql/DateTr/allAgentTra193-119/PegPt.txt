@@ -1,0 +1,14 @@
+
+delete dcPegPTOrdersMP  where year(OrderClosedDate)=2015 and month(OrderClosedDate)=04
+delete dcPegPTOrdersCV  from dcPegPTOrdersCV  where year(OrderClosedDate)=2015 and month(OrderClosedDate)=04
+
+
+
+
+ select * from  dcPegPTOrdersMP where year(OrderClosedDate)=2015 and month(OrderClosedDate)=04
+-- Truncate table  rdOFTOrders
+--------
+
+ insert into   dcPegPTOrdersMP  select * ,null as matchfiledate from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersMP)    where year(OrderClosedDate)=2015 and month(OrderClosedDate)=04
+
+  insert into  dcPegPTOrdersCV   select * ,null as matchfiledate from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersCV) where year(OrderClosedDate)=2015 and month(OrderClosedDate)=04

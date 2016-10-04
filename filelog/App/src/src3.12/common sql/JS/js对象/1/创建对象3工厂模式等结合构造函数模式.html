@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //构造函数+原型模式 结合各自的优点 把引用类型包含在构造函数中 把函数包含在原型中
+    //这样在new时 实例不会对引用类型产生相同的引用而对函数产生相同引用
+    // 在使用原型模式时所以实例引用相同模板。
+    function Person(){
+        this.adderss={a:"a",b:"b"};
+        this.name="Person";
+        this.age=10;
+
+    }
+    Person.prototype={
+        constructor:Person,
+        say: function(){
+
+            alert(this.name);
+        }
+
+
+    }
+
+    var person1=new Person();
+    var person2=new Person();
+    person1.adderss.a="aa";
+    alert(person1.adderss==person2.adderss);
+    alert(person1.adderss.a);
+    alert(person2.adderss.a);
+
+</script>
+
+
+</body>
+</html>

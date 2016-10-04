@@ -1,0 +1,181 @@
+--spe-mp  xi xicv 
+--dcSpePTOrdersXICV
+--dcSpePTOrdersCV
+--rdOFTOrders
+---
+select count(*)from rdOFTOrders
+
+
+delete  dcSpePTOrdersMP -- where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcSpePTOrdersCV -- where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcSpePTOrdersXI  --where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcSpePTOrdersXICV -- where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcPegPTOrdersMP  
+
+delete  dbo.dcPegPTOrdersCV 
+
+select * from  vdcPegPTOrdersCV
+
+--delete  vdcPegPTOrdersCV  view view 
+--DELETE rdOFTOrders
+--------
+
+--1
+delete   dcPegFTOrdersMP  where year(OrderCloseDate)=2015 and  month(OrderCloseDate)=03
+ --2
+delete   dcPegMHOrdersMP  where year(OrderCloseDate)=2015 and  month(OrderCloseDate)=03
+
+--3
+ --1
+ insert into   dcPegFTOrdersMP  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersMP) 
+-- where year(OrderCloseDate)=2015 and  month(OrderCloseDate)=03
+ -- 2
+insert into  dcPegMHOrdersMP   select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersMP)
+--where year(OrderCloseDate)=2015 and  month(OrderCloseDate)=03
+ --3
+
+------------------
+SELECT COUNT(*) FROM rdOFTOrders
+
+SELECT TOP 1 * FROM rdOFTOrders
+ --15
+
+ ----------------INSERT
+ 
+ insert into   dcSpePTOrdersMP
+ (
+ OrderNo,
+OrderEnteredDate,
+SvcNo,
+CustReqDate,
+BundleType,
+TxnType,
+CustID,
+CustIDType,
+CustName,
+CustClass,
+PackageID,
+CompID,
+ContractPeriod,
+SchemeID,
+CompIDPrev,
+ContractPeriodPrev,
+AltSvcNo,
+OrderMode,
+OrderModeType,
+AIType,
+ProductCode,
+LineType,
+ListPrice,
+ListPricePrev,
+ARPUAmt,
+PointEarned,
+SCSchemeCode,
+SCSchemeDetID,
+SCTierListID,
+VendorCode,
+DealerCode,
+SalesmanCode,
+CreatedBy,
+CreatedBatchNo,
+CreatedBatchDate,
+CreatedDate,
+UpdatedBy,
+UpdatedBatchNo,
+UpdatedBatchDate,
+UpdatedDate,
+ProcessedDate,
+ProcessStatus,
+ComputedBy,
+ComputedDate,
+RejBatchNo,
+RejOrderNo,
+RejErrCode,
+RejErrMsg,
+PegOrderNo,
+PointAdded,
+RollupInd,
+CountInd
+ 
+ ) select OrderNo,
+OrderEnteredDate,
+SvcNo,
+CustReqDate,
+BundleType,
+TxnType,
+CustID,
+CustIDType,
+CustName,
+CustClass,
+PackageID,
+CompID,
+ContractPeriod,
+SchemeID,
+CompIDPrev,
+ContractPeriodPrev,
+AltSvcNo,
+OrderMode,
+OrderModeType,
+AIType,
+ProductCode,
+LineType,
+ListPrice,
+ListPricePrev,
+ARPUAmt,
+PointEarned,
+SCSchemeCode,
+SCSchemeDetID,
+SCTierListID,
+VendorCode,
+DealerCode,
+SalesmanCode,
+CreatedBy,
+CreatedBatchNo,
+CreatedBatchDate,
+CreatedDate,
+UpdatedBy,
+UpdatedBatchNo,
+UpdatedBatchDate,
+UpdatedDate,
+ProcessedDate,
+ProcessStatus,
+ComputedBy,
+ComputedDate,
+RejBatchNo,
+RejOrderNo,
+RejErrCode,
+RejErrMsg,
+PegOrderNo,
+PointAdded,
+RollupInd,
+null   from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersMP)
+  
+   --select top 1 *  into dcSpePTOrdersMP_test from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersMP)
+  
+
+INSERT into   dcSpePTOrdersCV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersCV)
+   
+INSERT into   dcSpePTOrdersXICV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersXICV)
+   
+insert into   dcPegPTOrdersMP select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersMP)
+	
+insert into   dcPegPTOrdersCV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersCV)
+
+insert into   rdOFTOrders select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.rdOFTOrders)
+	
+ ----------------------------------------
+
+------------cv insert ------------
+
+-------1----in 119 need to change to insert but 182 not need---------
+ SELECT MP.COLUMN_NAME+',' as COLUMN_NAME,MP.dATA_TYPE ,TP.COLUMN_NAME ,TP.dATA_TYPE FROM( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcSpePTOrdersMP') MP --1¾ä
+LEFT JOIN  ( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcSpePTOrdersMP_test') TP ON MP.COLUMN_NAME=TP.COLUMN_NAME   --2¾ä
+-- 
+
+
+--------------------------------
+--
+ 
+
+
+   

@@ -1,0 +1,27 @@
+create table RollUpRule (
+id int identity(1,1),
+teamid varchar(10),
+staffid  varchar(10),
+subteamid  varchar(10),
+effectivedate datetime ,
+terminatedate  datetime
+)
+
+
+insert into  RollUpRule
+(
+
+teamid ,
+staffid  ,
+subteamid ,
+effectivedate ,
+terminatedate 
+) select 
+teamid ,
+staffid  ,
+subteamid ,
+effectivedate ,
+terminatedate 
+from 
+ openrowset('sqloledb','10.54.54.154,1854';'scp1t_owner';'ScpT1234',Scoreplusuat.dbo.RTS_ROLLUPRULE)  
+

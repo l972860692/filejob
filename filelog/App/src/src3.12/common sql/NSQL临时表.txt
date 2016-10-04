@@ -1,0 +1,2 @@
+。一个查询中的代码就是一个事务里面的（不包括拼接的sql语句）。
+--set @sql =@sql+'select * from #abc'

@@ -1,0 +1,184 @@
+	
+
+ Truncate table   dcPegFTOrdersMP
+ Truncate table   dbo.dcSpePTOrdersCV 
+ Truncate table   dbo.dcSpePTOrdersXI  
+ Truncate table   dbo.dcSpePTOrdersXICV 
+ Truncate table   dbo.dcPegPTOrdersMP  
+ Truncate table   dbo.dcPegPTOrdersCV 
+
+ Truncate table  dcPegFTOrdersMP
+ Truncate table  dcPegFTOrdersXI
+ Truncate table  dcPegMHOrdersMP
+ Truncate table  dcPegMHOrdersXI
+ Truncate table  dcPegMHOrdersRej
+
+
+-- Truncate table  rdOFTOrders
+--------
+
+ insert into   dcPegFTOrdersMP  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersMP) 
+  insert into  dcPegFTOrdersXI   select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegFTOrdersXI)
+   insert into   dcPegMHOrdersMP  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersMP) 
+  insert into  dcPegMHOrdersXI   select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersXI)
+   insert into   dcPegMHOrdersRej  select * from openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegMHOrdersRej) 
+
+
+
+------------------
+
+ ----------------INSERT
+ 
+----
+
+drop table dcSpePTOrdersMP
+select top 100* into  dcSpePTOrdersMP_bkForDrop2710 from  dcSpePTOrdersMP
+
+select * into dcSpePTOrdersMP from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersMP)
+   
+
+-----
+
+ insert into   dcSpePTOrdersMP
+ (
+ OrderNo,
+OrderEnteredDate,
+SvcNo,
+CustReqDate,
+BundleType,
+TxnType,
+CustID,
+CustIDType,
+CustName,
+CustClass,
+PackageID,
+CompID,
+ContractPeriod,
+SchemeID,
+CompIDPrev,
+ContractPeriodPrev,
+AltSvcNo,
+OrderMode,
+OrderModeType,
+AIType,
+ProductCode,
+LineType,
+ListPrice,
+ListPricePrev,
+ARPUAmt,
+PointEarned,
+SCSchemeCode,
+SCSchemeDetID,
+SCTierListID,
+VendorCode,
+DealerCode,
+SalesmanCode,
+CreatedBy,
+CreatedBatchNo,
+CreatedBatchDate,
+CreatedDate,
+UpdatedBy,
+UpdatedBatchNo,
+UpdatedBatchDate,
+UpdatedDate,
+ProcessedDate,
+ProcessStatus,
+ComputedBy,
+ComputedDate,
+RejBatchNo,
+RejOrderNo,
+RejErrCode,
+RejErrMsg,
+PegOrderNo,
+PointAdded,
+RollupInd,
+CountInd
+ 
+ ) select OrderNo,
+OrderEnteredDate,
+SvcNo,
+CustReqDate,
+BundleType,
+TxnType,
+CustID,
+CustIDType,
+CustName,
+CustClass,
+PackageID,
+CompID,
+ContractPeriod,
+SchemeID,
+CompIDPrev,
+ContractPeriodPrev,
+AltSvcNo,
+OrderMode,
+OrderModeType,
+AIType,
+ProductCode,
+LineType,
+ListPrice,
+ListPricePrev,
+ARPUAmt,
+PointEarned,
+SCSchemeCode,
+SCSchemeDetID,
+SCTierListID,
+VendorCode,
+DealerCode,
+SalesmanCode,
+CreatedBy,
+CreatedBatchNo,
+CreatedBatchDate,
+CreatedDate,
+UpdatedBy,
+UpdatedBatchNo,
+UpdatedBatchDate,
+UpdatedDate,
+ProcessedDate,
+ProcessStatus,
+ComputedBy,
+ComputedDate,
+RejBatchNo,
+RejOrderNo,
+RejErrCode,
+RejErrMsg,
+PegOrderNo,
+PointAdded,
+RollupInd,
+null   from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersMP)
+  
+ Truncate table   dbo.dcPegFTOrdersMP
+ Truncate table   dbo.dcSpePTOrdersCV 
+ Truncate table   dbo.dcSpePTOrdersXI  
+ Truncate table   dbo.dcSpePTOrdersXICV 
+ Truncate table   dbo.dcPegPTOrdersMP  
+ Truncate table   dbo.dcPegPTOrdersCV 
+
+INSERT into   dcSpePTOrdersCV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersCV)
+   
+INSERT into   dcSpePTOrdersXICV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersXICV)
+   
+insert into   dcPegPTOrdersMP select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersMP)
+	
+insert into   dcPegPTOrdersCV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersCV)
+
+INSERT into   dcSpePTOrdersXI select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersXI)
+   
+--insert into   rdOFTOrders select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.rdOFTOrders)
+	
+ ----------------------------------------
+
+------------cv insert ------------
+
+-------1----in 119 need to change to insert but 182 not need---------
+ SELECT MP.COLUMN_NAME+',' as COLUMN_NAME,MP.dATA_TYPE ,TP.COLUMN_NAME ,TP.dATA_TYPE FROM( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcSpePTOrdersMP') MP --1¾ä
+LEFT JOIN  ( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcSpePTOrdersMP_test') TP ON MP.COLUMN_NAME=TP.COLUMN_NAME   --2¾ä
+-- 
+
+
+--------------------------------
+--
+ 
+
+
+   

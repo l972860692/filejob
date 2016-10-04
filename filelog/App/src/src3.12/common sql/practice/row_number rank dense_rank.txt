@@ -1,0 +1,17 @@
+
+create table #mp(orderno int ,name varchar(20),createdate datetime)
+
+insert into #mp select 1,'111','2015-06-01'
+insert into #mp select 1,'111','2015-06-01'
+insert into #mp select 1,'111','2015-06-01'
+insert into #mp select 2,'222','2015-06-01'
+insert into #mp select 2,'222','2015-08-01'
+insert into #mp select 4,'333','2015-07-01'
+
+select * ,row_number()over(partition by orderno order by orderno ) as row from #mp
+
+select * ,dense_rank()over(partition by orderno order by orderno ) as row from #mp
+
+select * ,rank()over(partition by orderno order by orderno ) as row from #mp
+
+select * ,rank()over(order by orderno ) as row from #mp

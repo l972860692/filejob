@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo">Click the button to add elements to the array.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction()
+{
+var fruits = ["a", "b", "c", "d"];
+fruits.splice(0,1,"0-1");
+	document.write(fruits);
+
+	
+	
+x.innerHTML=fruits;
+}
+</script>
+
+</body>
+</html>

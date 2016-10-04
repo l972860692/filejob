@@ -1,0 +1,14 @@
+select *into FHB_MASTER
+from 
+openrowset('sqloledb','10.54.54.154,1854';'scp1t_owner';'ScpT1234',ScorePlusUAT.dbo.FHB_MASTER) 
+
+
+select *into FHB_TEMP
+from 
+openrowset('sqloledb','10.54.54.154,1854';'scp1t_owner';'ScpT1234',ScorePlusUAT.dbo.FHB_TEMP) 
+
+
+select *into FHB_Rej
+from 
+openrowset('sqloledb','10.54.54.154,1854';'scp1t_owner';'ScpT1234',ScorePlusUAT.dbo.FHB_Rej) 
+

@@ -1,0 +1,52 @@
+﻿<div ng-controller="chartProcCtr">
+    <div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h3">{{urlParm}}</h1>
+    </div>
+    <div class="wrapper-md">
+        <!-- <div ng-controller="FlotChartDemoCtrl">-->
+        <div>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading font-bold">Compose</div>
+                        <div class="panel-body">
+<div ui-refresh="d0_1" ui-jq="plot" ui-options="
+              [
+                { data: {{d0_1}}, label: 'Unique Visits', points: { show: true } }, 
+              { data: {{d0_3}}, label: 'Unique Visits', points: { show: true } }, 
+                { data: {{d0_2}}, label: 'Page Views', bars: { show: true, barWidth: 0.6, fillColor: { colors: [{ opacity: 0.2 }, { opacity: 0.4}] } } }
+              ],
+              {                
+                colors: [ '{{app.color.info}}','{{app.color.success}}' ],
+                series: { shadowSize: 2 },
+                xaxis:{ font: { color: '#ccc' } },
+                yaxis:{ font: { color: '#ccc' } },
+                grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                tooltip: true,
+                tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+              }
+            " style="height:240px"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading font-bold">Donut Pie</div>
+
+                    </div>
+                </div>
+            </div>
+            <div div class="row">
+
+                <div class="panel-body">
+                    <canvas id="line" class="chart chart-line" chart-data="data"
+                            chart-labels="labels" chart-legend="true" chart-series="series"
+                            chart-click="onClick"></canvas>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

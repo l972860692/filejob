@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SPlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SPlus.dbo.FW_CO_FILECONTROL”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="FW_CO_FILECONTROL">
+          <Key>
+            <PropertyRef Name="RECID" />
+          </Key>
+          <Property Name="RECID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PROCESSID" Type="varchar" MaxLength="20" />
+          <Property Name="RUNID" Type="varchar" MaxLength="15" />
+          <Property Name="SUBPROCESS" Type="varchar" MaxLength="50" />
+          <Property Name="ISREPROCESS" Type="int" />
+          <Property Name="FILENAME" Type="varchar" MaxLength="100" />
+          <Property Name="STARTSEQNO" Type="varchar" MaxLength="20" />
+          <Property Name="ENDSEQNO" Type="varchar" MaxLength="20" />
+          <Property Name="PROCESSDATETIME" Type="datetime" />
+          <Property Name="OUTPUTFILENAME" Type="varchar" MaxLength="30" />
+          <Property Name="NOFINPUT" Type="int" />
+          <Property Name="NOFVALID" Type="int" />
+          <Property Name="NOFREJECT" Type="int" />
+          <Property Name="NOFIGNORE" Type="int" />
+          <Property Name="DELETEIND" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SPlus.dbo.FW_CO_JOBCTRL”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="FW_CO_JOBCTRL">
+          <Key>
+            <PropertyRef Name="RECID" />
+          </Key>
+          <Property Name="RECID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PROCESSID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SUBPROCESSID" Type="varchar" MaxLength="40" />
+          <Property Name="RUNMODE" Type="int" />
+          <Property Name="RUNID" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="JOBSTATUS" Type="int" Nullable="false" />
+          <Property Name="STARTDATETIME" Type="datetime" Nullable="false" />
+          <Property Name="ENDDATETIME" Type="datetime" />
+          <Property Name="REMARKS" Type="varchar" MaxLength="4000" />
+          <Property Name="CREATEUSERID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CREATEDATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CHANGEUSERID" Type="varchar" MaxLength="20" />
+          <Property Name="CHANGEDATETIME" Type="datetime" />
+          <Property Name="JOBSTREAM" Type="varchar" MaxLength="40" />
+          <Property Name="EXCLRESOURCE" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="web_jobtable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jobname" Type="varchar" MaxLength="50" />
+          <Property Name="tablename" Type="varchar" MaxLength="50" />
+          <Property Name="jobfilename" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SPlusModelStoreContainer">
+          <EntitySet Name="web_jobtable" EntityType="Self.web_jobtable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FW_CO_FILECONTROL" EntityType="Self.FW_CO_FILECONTROL" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FW_CO_FILECONTROL].[RECID] AS [RECID], 
+    [FW_CO_FILECONTROL].[PROCESSID] AS [PROCESSID], 
+    [FW_CO_FILECONTROL].[RUNID] AS [RUNID], 
+    [FW_CO_FILECONTROL].[SUBPROCESS] AS [SUBPROCESS], 
+    [FW_CO_FILECONTROL].[ISREPROCESS] AS [ISREPROCESS], 
+    [FW_CO_FILECONTROL].[FILENAME] AS [FILENAME], 
+    [FW_CO_FILECONTROL].[STARTSEQNO] AS [STARTSEQNO], 
+    [FW_CO_FILECONTROL].[ENDSEQNO] AS [ENDSEQNO], 
+    [FW_CO_FILECONTROL].[PROCESSDATETIME] AS [PROCESSDATETIME], 
+    [FW_CO_FILECONTROL].[OUTPUTFILENAME] AS [OUTPUTFILENAME], 
+    [FW_CO_FILECONTROL].[NOFINPUT] AS [NOFINPUT], 
+    [FW_CO_FILECONTROL].[NOFVALID] AS [NOFVALID], 
+    [FW_CO_FILECONTROL].[NOFREJECT] AS [NOFREJECT], 
+    [FW_CO_FILECONTROL].[NOFIGNORE] AS [NOFIGNORE], 
+    [FW_CO_FILECONTROL].[DELETEIND] AS [DELETEIND]
+    FROM [dbo].[FW_CO_FILECONTROL] AS [FW_CO_FILECONTROL]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FW_CO_JOBCTRL" EntityType="Self.FW_CO_JOBCTRL" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FW_CO_JOBCTRL].[RECID] AS [RECID], 
+    [FW_CO_JOBCTRL].[PROCESSID] AS [PROCESSID], 
+    [FW_CO_JOBCTRL].[SUBPROCESSID] AS [SUBPROCESSID], 
+    [FW_CO_JOBCTRL].[RUNMODE] AS [RUNMODE], 
+    [FW_CO_JOBCTRL].[RUNID] AS [RUNID], 
+    [FW_CO_JOBCTRL].[JOBSTATUS] AS [JOBSTATUS], 
+    [FW_CO_JOBCTRL].[STARTDATETIME] AS [STARTDATETIME], 
+    [FW_CO_JOBCTRL].[ENDDATETIME] AS [ENDDATETIME], 
+    [FW_CO_JOBCTRL].[REMARKS] AS [REMARKS], 
+    [FW_CO_JOBCTRL].[CREATEUSERID] AS [CREATEUSERID], 
+    [FW_CO_JOBCTRL].[CREATEDATETIME] AS [CREATEDATETIME], 
+    [FW_CO_JOBCTRL].[CHANGEUSERID] AS [CHANGEUSERID], 
+    [FW_CO_JOBCTRL].[CHANGEDATETIME] AS [CHANGEDATETIME], 
+    [FW_CO_JOBCTRL].[JOBSTREAM] AS [JOBSTREAM], 
+    [FW_CO_JOBCTRL].[EXCLRESOURCE] AS [EXCLRESOURCE]
+    FROM [dbo].[FW_CO_JOBCTRL] AS [FW_CO_JOBCTRL]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPlusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="web_jobtable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jobname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tablename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jobfilename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FW_CO_FILECONTROL">
+          <Key>
+            <PropertyRef Name="RECID" />
+          </Key>
+          <Property Name="RECID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROCESSID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RUNID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SUBPROCESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ISREPROCESS" Type="Int32" />
+          <Property Name="FILENAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STARTSEQNO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ENDSEQNO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PROCESSDATETIME" Type="DateTime" Precision="3" />
+          <Property Name="OUTPUTFILENAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NOFINPUT" Type="Int32" />
+          <Property Name="NOFVALID" Type="Int32" />
+          <Property Name="NOFREJECT" Type="Int32" />
+          <Property Name="NOFIGNORE" Type="Int32" />
+          <Property Name="DELETEIND" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FW_CO_JOBCTRL">
+          <Key>
+            <PropertyRef Name="RECID" />
+          </Key>
+          <Property Name="RECID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROCESSID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUBPROCESSID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RUNMODE" Type="Int32" />
+          <Property Name="RUNID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JOBSTATUS" Type="Int32" Nullable="false" />
+          <Property Name="STARTDATETIME" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ENDDATETIME" Type="DateTime" Precision="3" />
+          <Property Name="REMARKS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="CREATEUSERID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATEDATETIME" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CHANGEUSERID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CHANGEDATETIME" Type="DateTime" Precision="3" />
+          <Property Name="JOBSTREAM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EXCLRESOURCE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SPlusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="web_jobtable" EntityType="Self.web_jobtable" />
+          <EntitySet Name="FW_CO_FILECONTROL" EntityType="Self.FW_CO_FILECONTROL" />
+          <EntitySet Name="FW_CO_JOBCTRL" EntityType="Self.FW_CO_JOBCTRL" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SPlusModelStoreContainer" CdmEntityContainer="SPlusEntities">
+          <EntitySetMapping Name="web_jobtable">
+            <EntityTypeMapping TypeName="SPlusModel.web_jobtable">
+              <MappingFragment StoreEntitySet="web_jobtable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="tablename" ColumnName="tablename" />
+                <ScalarProperty Name="jobfilename" ColumnName="jobfilename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FW_CO_FILECONTROL">
+            <EntityTypeMapping TypeName="SPlusModel.FW_CO_FILECONTROL">
+              <MappingFragment StoreEntitySet="FW_CO_FILECONTROL">
+                <ScalarProperty Name="RECID" ColumnName="RECID" />
+                <ScalarProperty Name="PROCESSID" ColumnName="PROCESSID" />
+                <ScalarProperty Name="RUNID" ColumnName="RUNID" />
+                <ScalarProperty Name="SUBPROCESS" ColumnName="SUBPROCESS" />
+                <ScalarProperty Name="ISREPROCESS" ColumnName="ISREPROCESS" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="STARTSEQNO" ColumnName="STARTSEQNO" />
+                <ScalarProperty Name="ENDSEQNO" ColumnName="ENDSEQNO" />
+                <ScalarProperty Name="PROCESSDATETIME" ColumnName="PROCESSDATETIME" />
+                <ScalarProperty Name="OUTPUTFILENAME" ColumnName="OUTPUTFILENAME" />
+                <ScalarProperty Name="NOFINPUT" ColumnName="NOFINPUT" />
+                <ScalarProperty Name="NOFVALID" ColumnName="NOFVALID" />
+                <ScalarProperty Name="NOFREJECT" ColumnName="NOFREJECT" />
+                <ScalarProperty Name="NOFIGNORE" ColumnName="NOFIGNORE" />
+                <ScalarProperty Name="DELETEIND" ColumnName="DELETEIND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FW_CO_JOBCTRL">
+            <EntityTypeMapping TypeName="SPlusModel.FW_CO_JOBCTRL">
+              <MappingFragment StoreEntitySet="FW_CO_JOBCTRL">
+                <ScalarProperty Name="RECID" ColumnName="RECID" />
+                <ScalarProperty Name="PROCESSID" ColumnName="PROCESSID" />
+                <ScalarProperty Name="SUBPROCESSID" ColumnName="SUBPROCESSID" />
+                <ScalarProperty Name="RUNMODE" ColumnName="RUNMODE" />
+                <ScalarProperty Name="RUNID" ColumnName="RUNID" />
+                <ScalarProperty Name="JOBSTATUS" ColumnName="JOBSTATUS" />
+                <ScalarProperty Name="STARTDATETIME" ColumnName="STARTDATETIME" />
+                <ScalarProperty Name="ENDDATETIME" ColumnName="ENDDATETIME" />
+                <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="CREATEDATETIME" ColumnName="CREATEDATETIME" />
+                <ScalarProperty Name="CHANGEUSERID" ColumnName="CHANGEUSERID" />
+                <ScalarProperty Name="CHANGEDATETIME" ColumnName="CHANGEDATETIME" />
+                <ScalarProperty Name="JOBSTREAM" ColumnName="JOBSTREAM" />
+                <ScalarProperty Name="EXCLRESOURCE" ColumnName="EXCLRESOURCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

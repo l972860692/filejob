@@ -1,0 +1,76 @@
+
+
+
+
+SELECT * INTO #rfSPCProductMasterFT FROM rfSPCProductMaster WHERE productfamily LIKE '%miohome%' AND servicetype = 'FTTH'
+SELECT * INTO #rfSPCProductMasterMH FROM rfSPCProductMaster WHERE productfamily LIKE '%miohome%' AND servicetype = 'ADSL'
+
+
+
+select * from  dcPegMHOrdersMP where OrderCloseDate  between '2015-06-01' and '2015-07-01' and  CompID  in (select productid from #rfSPCProductMasterFT  )
+
+
+select count(*) from  dcPegFTOrdersMP where OrderCloseDate  between '2015-06-01' and '2015-07-01' and  CompID   in (select productid from #rfSPCProductMasterMH  )
+
+select count(*) from  dcPegFTOrdersMP where OrderCloseDate  between '2015-06-01' and '2015-07-01'
+
+
+select * from  dcPegFTOrdersMP where OrderCloseDate  between '2015-06-01' and '2015-07-01' and  CompID not in (select productid from #rfSPCProductMasterFT  )
+ and  CompID  not  in (select productid from #rfSPCProductMasterMH  )
+
+ 2104535
+
+
+ select * from  rfSPCProductMaster where ProductID ='2104535'
+
+
+
+select * from dcPegMHOrdersRej_testFor20150629 
+where orderno='QHG1004001'
+
+
+
+
+ select * from
+ (select * from  dcPegFTOrdersMP where OrderCloseDate  between '2015-06-01' and '2015-07-01') a where CompID  in (select productid from #rfSPCProductMasterMH  )
+	
+		 and OrderCloseDate  between '2015-06-01' and '2015-07-01'
+		 
+
+
+
+
+select * into #missFTorders from  dcPegMHOrdersRej
+		 where OrderCloseDate >= @nowmonth
+		 and Remarks like '%non mio Home Orders%'
+		 and  CompID not in (
+		select ProductID from  #rfSPCProductMasterFT
+		 )
+		 
+		 
+		 select * from dcPegFTOrdersMPTemp193 where CompID  in (select productid from #rfSPCProductMasterMH  )
+		 and OrderCloseDate  between '2015-06-01' and '2015-07-01'
+		 
+		 
+		 
+	select * from dcPegFTOrdersMPTemp193 where CompID  in (select productid from #rfSPCProductMasterMH  )
+	and OrderCloseDate  between '2015-06-01' and '2015-07-01'
+		 
+		 
+		 
+		 
+		  select COUNT(*) from dcPegFTOrdersMPTemp193 
+		  where  --CompID  in (select productid from #rfSPCProductMasterMH)
+		 -- and
+		   OrderCloseDate  between '2015-06-01' and '2015-07-01'
+		 
+		 
+		 
+		  select * from dcPegFTOrdersMPTemp193 where CompID not in (select productid from #rfSPCProductMasterFT)
+		 and OrderCloseDate  between '2015-06-01' and '2015-07-01'
+
+
+		 select count(*) from  dcPegFTOrdersMP where OrderCloseDate  between '2015-05-01' and '2015-05-31' and  CompID  in (select productid from #rfSPCProductMasterFT  )
+select count(*) from  dcPegFTOrdersMP where OrderCloseDate  between '2015-05-01' and '2015-05-31' and  CompID   in (select productid from #rfSPCProductMasterMH  )
+
+

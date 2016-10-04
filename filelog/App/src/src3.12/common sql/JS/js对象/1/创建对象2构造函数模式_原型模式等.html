@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+
+    //原型模式的缺点：在由引用类型时 new 更像c#中的浅复制
+    function PersonDifferent()
+    {
+
+    }
+    PersonDifferent.prototype={
+
+        name:"PersonDifferent",
+        age:100,
+        address:{a:"a",b:"b"}
+
+    }
+    var different1=new PersonDifferent();
+    var different2=new PersonDifferent();
+    different1.address.a="aa";
+    alert(different1.address==different2.address);
+    alert(different1.address.a)
+    alert(different2.address.a)
+
+
+
+
+
+
+    //关于原型 对象的prototype指向 1函数的原型对象而不是构造函数。2属性的搜索从自身实例开始如果没有则搜索原型对象。3.实例共享原型对象中函数。
+
+//import:PersonRework 中 我们 new PersonRework 之后 就重写了 prototype 类 但是  personRework 实例依然 指向原来的prototype 里面没有任何属性
+//所以后面会报错
+
+//所以原生的引用类型都是采用 原型模式定义的
+
+
+
+function PersonRework(){
+
+}
+var personRework =new PersonRework();
+PersonRework.prototype={
+    constructor:PersonRework,
+  name:"PersonRework",
+    age:100,
+    say:function(){
+
+        alert(this.name)
+    }
+
+}
+
+document.write(personRework.name);
+document.write("<br/>");
+personRework.say();
+
+
+
+    function PersonThis(){
+       this.name="PersonThis";
+        this.age=100;
+        this.say=function(){alert(this.name)};
+    }
+
+   function Person(){
+        Person.prototype.name="PersonPerson";
+        Person.prototype.age=10;
+        Person.prototype.say=function(){alert(this.name)};
+    }
+
+
+
+     var person1=new Person();
+   var person2=new Person();
+    var person3=new PersonThis();
+
+    person2.name="person2";
+    person3.name="person3";//次函数原型对象 没有 name和age属性 即_proto_ 下面没有name和age
+
+    person2.adderss="adderss2"
+    person3.adderss="adderss3"
+
+ document.write(person1.name);
+   document.write("<br/>");
+   document.write(person2.name);
+    document.write("<br/>");
+    document.write(person3.name);
+
+    for(var n in person2)
+    {
+        document.write("<br/>");
+        document.write(n.valueOf());
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

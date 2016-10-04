@@ -1,0 +1,29 @@
+create table TestView (id int,BId int ,name varchar(10),createTime datetime,remark varchar(10))
+create table TestTable(id int,name varchar(10))
+
+
+insert TestView select 1,1,'acv1','2015-05-01','test'
+union select 2,1,'acv2','2015-05-01','test'
+union select 3,1,'acv3','2015-05-01','test'
+union select 4,1,'acv4','2015-05-01','test'
+union select 5,1,'acv5','2015-05-01','test'
+union select 6,2,'acv6','2015-05-01','test'
+union select 7,2,'acv7','2015-05-01','test'
+union select 8,2,'acv8','2015-05-01','test'
+
+insert TestTable select 1,'test1'
+insert TestTable select 2,'test2'
+insert TestTable select 3,'test3'
+
+create view VTestView
+as
+
+select a.id ,a.BId as Bid ,a.name as AName,b.name as BName from  TestView a INNER JOIN  TestTable b on a.BId=b.id
+
+
+select * from VTestView
+
+update  VTestView set Bid=3,BName='TTT'  from VTestView where id=1
+
+
+update  VTestView set Bid=4 from VTestView where id=1

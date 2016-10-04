@@ -1,0 +1,55 @@
+﻿<div class="bg-light lter b-b wrapper-md">
+    <button ui-sref="app.filejoblogsetting" type="button" class="btn btn-default btn-addon pull-right m-t-n-xs">
+
+        Set
+
+    </button>
+    <h1 class="m-n font-thin h3">Beauty Your Data</h1>
+</div>
+<div class="wrapper-md">
+    <!-- <div ng-controller="FlotChartDemoCtrl">-->
+    <div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">Compose</div>
+                    <div class="panel-body">
+                        <div ui-jq="plot" ui-options="
+              [
+                { data: [ [0,29000],[1,600.5],[2,12000.5],[3,70],[4,90],[5,60],[6,110],[7,60000.5],[8,800],[9,70000] ], label: 'A', points: { show: true,radius:4 }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } },
+                { data: [ [0,8000],[1,600.5],[2,70000],[3,4.50],[4,3],[5,30.5],[6,60],[7,30000],[8,40000],[9,30000] ], label: 'B', points: { show: true, radius: 2 } }
+              ],
+              {
+                colors: [ '#23b7e5','#fad733' ],
+                series: { shadowSize: 2 },
+                xaxis:{ font: { color: '#ccc' } },
+                yaxis:{ font: { color: '#ccc' } },
+                grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                tooltip: true,
+                tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+              }
+            " style="height:240px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading font-bold">Donut Pie</div>
+                    <div class="panel-body">
+                        <div ui-jq="plot" ui-options="
+              [ [10, 80],  [20, 40], [30, 30],  [40, 20] ],
+              {
+                series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                colors: ['#7266ba','#23b7e5','#27c24c','#fad733','#f05050'],
+                grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                tooltip: true,
+                tooltipOpts: { content: '%s: %p.0%' }
+              }
+            " style="height:240px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

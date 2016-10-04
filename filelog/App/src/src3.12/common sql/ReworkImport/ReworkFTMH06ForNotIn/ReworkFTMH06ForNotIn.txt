@@ -1,0 +1,149 @@
+
+
+select * into  dcPegFTOrdersMP_bk0710 from   dcPegFTOrdersMP
+select * into dcPegFTOrdersXI_bk0710 from   dcPegFTOrdersXI
+select * into dcPegMHOrdersMP_bk0710  from   dcPegMHOrdersMP
+select * into dcPegMHOrdersXI_bk0710  from   dcPegMHOrdersXI
+select * into dcPegMHOrdersRej_bk0710  from   dcPegMHOrdersRej
+
+
+
+select count(*)  from   dcPegFTOrdersMP where Remarks='becauseofmisscompid' and OrderCloseDate between '2015-06-01' and '2015-06-30'
+
+select count(*)  from   dcPegMHOrdersMP where Remarks='becauseofmisscompid' and OrderCloseDate between '2015-06-01' and '2015-06-30'
+
+
+
+
+SELECT 
+MP.COLUMN_NAME+',' as COLUMN_NAME,MP.dATA_TYPE ,TP.COLUMN_NAME +',',TP.dATA_TYPE 
+FROM
+( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcPegMHOrdersRej') 
+MP --1¾ä
+LEFT JOIN  
+( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcPegFTOrdersMP') 
+TP ON MP.COLUMN_NAME=TP.COLUMN_NAME  
+
+
+
+insert into dcPegMHOrdersRej(
+RecordNo,
+BANumber,
+OrderNo,
+ServiceNo,
+ServiceType,
+CustomerName,
+CustomerID,
+AddressPremiseNo,
+AddressStreetNm,
+AddressUnitNo,
+AddressBuildingNo,
+AddressDevelopNo,
+AddressCountry,
+AddressPostalCode,
+CRD,
+OrderCreationDate,
+OrderCloseDate,
+CompID,
+CompDesc,
+OrderAction,
+PackageID,
+PackageDesc,
+Penalty,
+MioContentCompID,
+MioContentCompDesc,
+SchemeID,
+VendorCode,
+DealerCode,
+SalesmanCode,
+OrderType,
+CustClass,
+Remarks,
+BatchNo,
+DateCreated,
+OrderCloseDt,
+SGOrderNo,
+SGSvcType,
+SGTxnType,
+PTOrderNo,
+PTSvcType,
+PTTxnType
+
+)
+select RecordNo,
+BANumber,
+OrderNo,
+ServiceNo,
+ServiceType,
+CustomerName,
+CustomerID,
+AddressPremiseNo,
+AddressStreetNm,
+AddressUnitNo,
+AddressBuildingNo,
+AddressDevelopNo,
+AddressCountry,
+AddressPostalCode,
+CRD,
+OrderCreationDate,
+OrderCloseDate,
+CompID,
+CompDesc,
+OrderAction,
+PackageID,
+PackageDesc,
+Penalty,
+MioContentCompID,
+MioContentCompDesc,
+SchemeID,
+VendorCode,
+DealerCode,
+SalesmanCode,
+OrderType,
+CustClass,
+'non mio Home Orders',
+BatchNo,
+DateCreated,
+NULL,
+SGOrderNo,
+SGSvcType,
+SGTxnType,
+PTOrderNo,
+PTSvcType,
+PTTxnType
+from 
+
+--select count(*) from
+dcPegMHOrdersMP where OrderCloseDate  >= '2015-06-01'  and  CompID not  in (select productid from #rfSPCProductMasterMH  )
+--dcPegFTOrdersMP where OrderCloseDate  >= '2015-06-01'  and  CompID not  in (select productid from #rfSPCProductMasterFT  )
+
+ --dcPegMHOrdersMP where Remarks='becauseofmisscompid' and OrderCloseDate >= '2015-06-01' 
+  --dcPegFTOrdersMP where Remarks='becauseofmisscompid' and OrderCloseDate >= '2015-06-01' 
+
+
+
+
+
+--delete  from   dcPegFTOrdersMP where Remarks='becauseofmisscompid' and OrderCloseDate >= '2015-06-01' 
+
+--delete  from   dcPegMHOrdersMP where Remarks='becauseofmisscompid' and OrderCloseDate >= '2015-06-01' 
+--delete from  dcPegFTOrdersMP where OrderCloseDate  >= '2015-06-01'  and  CompID not  in (select productid from #rfSPCProductMasterFT  )
+
+
+--delete  from  dcPegMHOrdersMP where OrderCloseDate   >= '2015-06-01'  and  CompID  not   in (select productid from #rfSPCProductMasterMH  )
+
+
+
+
+
+select * from  dcPegFTOrdersMP where OrderCloseDate  >= '2015-06-01'  and  CompID not  in (select productid from #rfSPCProductMasterFT  )
+
+
+select count(*) from  dcPegMHOrdersMP where OrderCloseDate   >= '2015-06-01'  and  CompID  not   in (select productid from #rfSPCProductMasterMH  )
+
+
+
+SELECT * INTO #rfSPCProductMasterFT FROM rfSPCProductMaster WHERE productfamily LIKE '%miohome%' AND servicetype = 'FTTH'
+SELECT * INTO #rfSPCProductMasterMH FROM rfSPCProductMaster WHERE productfamily LIKE '%miohome%' AND servicetype = 'ADSL'
+
+select * from dcPegMHOrdersRej where CompID='74841'

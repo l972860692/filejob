@@ -1,0 +1,20 @@
+<html>
+<body>
+
+<script type="text/javascript">
+//js 函数参数 都是按值传递 没有按引用传递方式，即都是传递变量的值（引用类型值为引用类型）
+function add(num1,num2){arguments[1]=10;alert(arguments[1]+''+num2)}
+add(1,100);
+
+function setName(obj){
+obj.name='oldName';
+obj =new Object();
+obj.name='newName'; 
+}
+var person=new Object();
+setName(person);
+alert(person.name);
+</script>
+
+</body>
+</html>

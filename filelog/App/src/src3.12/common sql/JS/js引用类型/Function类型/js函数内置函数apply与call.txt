@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<script>
+var c=[0,150,30,20,38];
+var b=Math.max.apply(Math,c);//非常的妙 我们前面 看过apply()与call的区别 apply(this,[arguments/arry]) 而call只能是(this,n,n1,n2,....)
+//var b=Math.max(c);
+document.write(b);
+</script>
+
+</body>
+</html>

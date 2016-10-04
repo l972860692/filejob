@@ -1,0 +1,48 @@
+--spe-mp  xi xicv 
+--dcSpePTOrdersXICV
+--dcSpePTOrdersCV
+--rdOFTOrders
+---
+delete  dcSpePTOrdersMP -- where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcSpePTOrdersCV -- where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcSpePTOrdersXI  --where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcSpePTOrdersXICV -- where year(OrderEnteredDate)=2014 and  month(OrderEnteredDate)=11
+delete  dbo.dcPegPTOrdersMP  
+delete  dbo.dcPegPTOrdersCV 
+DELETE rdOFTOrders
+--------
+SELECT COUNT(*) FROM rdOFTOrders
+
+SELECT TOP 1 * FROM rdOFTOrders
+ --15
+
+ ----------------INSERT
+ 
+ insert into   dcSpePTOrdersMP select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersMP)
+  
+  INSERT into   dcSpePTOrdersCV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersCV)
+   
+   INSERT into   dcSpePTOrdersXICV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcSpePTOrdersXICV)
+   
+    insert into   dcPegPTOrdersMP select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersMP)
+	
+	 insert into   dcPegPTOrdersCV select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.dcPegPTOrdersCV)
+	 
+	  insert into   rdOFTOrders select *  from  openrowset('sqloledb','10.54.14.193';'scoredb';'scDB@sn05',Score.dbo.rdOFTOrders)
+	
+ ----------------------------------------
+
+------------cv insert ------------
+
+-------1----in 119 need to change to insert but 182 not need---------
+ SELECT MP.COLUMN_NAME+',' as COLUMN_NAME,MP.dATA_TYPE ,TP.COLUMN_NAME ,TP.dATA_TYPE FROM( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='dcPegMTOrdersCV') MP --1¾ä
+LEFT JOIN  ( SELECT COLUMN_NAME,dATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='ls19325_dcPegMTOrdersCV') TP ON MP.COLUMN_NAME=TP.COLUMN_NAME   --2¾ä
+-- 
+
+
+--------------------------------
+--
+ 
+
+
+   

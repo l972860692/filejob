@@ -1,0 +1,23 @@
+<html>
+<body>
+
+<script type="text/javascript">
+var color='Windows.Color';
+function change(theChangeValue)
+{
+  var color='Function.Color';
+  color='ChangeColor';
+  rel='rel';//会被视为全局环境变量
+with(new Object())
+{
+ var rels=location.href+color;//rels 会被添加到前端执行环境中
+}
+alert(rels)
+}
+ change('abc');
+alert(color);
+alert(rel);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+select count(*) from rfSPCProductMaster
+
+select top 2* from fhborders201505
+
+select top 2* from fhborders201504
+
+select top 2* from fhborders201503
+
+select orderno ,cprecon, crd,custid,crd as comeyaer into  fhbordersAll  from  fhborders201505
+
+
+delete fhbordersAll
+
+
+
+insert   into  fhbordersAll select orderno ,cprecon, crd,custid,'2015-03-01' as comeyaer   from  fhborders201503
+
+select * from  fhbordersAll
+

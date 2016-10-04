@@ -1,0 +1,164 @@
+
+select * into    #dcPegPTOrdersMP_cr309554  from  dcPegPTOrdersMP   where year(OrderClosedDate)=2015 and month(OrderClosedDate)=07
+
+select * into  #dcPegPTOrdersCV_cr309554  from dcPegPTOrdersCV   where year(OrderClosedDate)=2015 and month(OrderClosedDate)=07
+
+
+
+
+select * into    dcPegPTOrdersMP_cr309554_0507  from  dcPegPTOrdersMP   where year(OrderClosedDate)=2015 and( month(OrderClosedDate)=07 or month(OrderClosedDate)=05 )
+
+select * into    dcPegPTOrderscv_cr309554_0507  from dcPegPTOrdersCV   where year(OrderClosedDate)=2015 and( month(OrderClosedDate)=07 or month(OrderClosedDate)=05 )
+
+
+
+------find fta----dcPegPTOrdersMP_cr309554 是prd的数据  以下是 prd的和119改变规则后的满足recon order的 component里 有个CEASE的FTA component, 那么这条recon order 我们需要给它SVCAI---------------
+select OrderNo,SvcAI,ContentAI,* from #dcPegPTOrdersMP_cr309554
+
+where OrderNo in (
+select OrderNo from vdcPegPTOrdersCV where OrderClosedDate between '2015-07-01'  and '2015-07-31'   
+and DealerCode in (select PartnerChildCode from mfPartnerRelation where partnercode='CS00020')
+and cast(ActionType as int)=3
+and CompID='74841' 
+)
+and OrderClosedDate between '2015-07-01'  and '2015-07-31'  
+
+ --
+select OrderNo,SvcAI,ContentAI,* from #dcPegPTOrdersMP
+
+where OrderNo in (
+select OrderNo from vdcPegPTOrdersCV where OrderClosedDate between '2015-07-01'  and '2015-07-31'   
+and DealerCode in (select PartnerChildCode from mfPartnerRelation where partnercode='CS00020')
+and cast(ActionType as int)=3
+and CompID='74841' 
+)
+and OrderClosedDate between '2015-07-01'  and '2015-07-31'  
+
+
+select * from #dcPegPTOrdersMP_cr309554 where OrderNo in('QOQ0843001','QPD9565001','QPT8000001','QPW9728001')
+select * from dcPegPTOrdersMP where OrderNo in('QOQ0843001','QPD9565001','QPT8000001','QPW9728001')
+
+
+
+-------find all -----
+
+select * into    #dcPegPTOrdersMP  from  dcPegPTOrdersMP_PRD_0405060708   where year(OrderClosedDate)=2015 and month(OrderClosedDate)=07
+
+select * into    #dcPegPTOrdersCV  from dcPegPTOrderscv_PRD_0405060708   where year(OrderClosedDate)=2015 and month(OrderClosedDate)=07
+
+
+
+select * from #dcPegPTOrdersMP_cr309554 where RejErrMSg like '%FTA%'
+
+
+
+---find svcai no 
+select a.* from  #dcPegPTOrdersMP_cr309554 a
+inner join #dcPegPTOrdersMP b on  a.OrderNo =b.OrderNo
+where ISNULL(a.svcai,0) !=ISNULL(b.svcai,0)
+QOQ0843001
+QPD9565001
+QPT8000001
+QPW9728001
+
+QOQ0843001
+QOQ0843001
+QPD9565001
+QPD9565001
+
+
+select * from  #dcPegPTOrdersMP_cr309554 where orderno='QOQ0843001'
+select * from  #dcPegPTOrdersCV where orderno='QOQ0843001'
+
+select * from  #dcPegPTOrdersMP_cr309554 where orderno='QPT8000001'
+select * from  #dcPegPTOrdersCV where orderno='QPT8000001'
+
+
+
+
+select * from #dcPegPTOrdersMP_cr309554
+
+select * from  dcPegPTOrdersMP where OrderNo='PXD8931001'
+
+select * from  #dcPegPTOrdersMP where  OrderNo='PXD8931001'
+
+---find contentai
+select a.OrderNo,a.ContentAI,b.ContentAI,b.* from  #dcPegPTOrdersMP_cr309554 a
+inner join #dcPegPTOrdersMP b on  a.OrderNo =b.OrderNo
+where ISNULL(a.ContentAI,0) !=ISNULL(b.ContentAI,0)
+
+
+-------
+
+select a.SchemeCode,d.PartnerCode,b.SchemeDetID ,e.PartnerChildCode,a.SchemeDesc,c.*from mfAIScheme  a inner join mfAISchemeDet b on a.SchemeCode=b.SchemeCode 
+inner join  mfAISchemeTier c on b.SchemeDetID=c.SchemeDetID inner join mfAISchemePartner d on a.SchemeCode=b.SchemeCode inner join  mfPartnerRelation e on d.PartnerCode=e.PartnerCode
+where e.PartnerChildCode='D8205'
+
+
+-------
+select * from  dcPegPTOrdersMP where OrderNo='QPT8000001'
+
+select * from  dcPegPTOrderscv where OrderNo='QPT8000001'
+
+
+
+
+select * from  dcPegPTOrdersMP_PRD_0405060708 where  OrderNo='QPT8000001'
+
+select * from  dcPegPTOrderscv_PRD_0405060708 where OrderNo='QPT8000001'
+
+
+
+
+
+
+
+
+select * from  dcPegPTOrdersMP_cr309554 where OrderNo='QDS0342003'
+select * from  dcPegPTOrdersMP where OrderNo='QDS0342003'
+
+select * from  dcPegPTOrderscv_cr309554 where OrderNo='QDS0342003'
+select * from  dcPegPTOrderscv where OrderNo='QDS0342003'
+
+
+select * from rfSPCProductMaster where ProductID='73467'
+
+
+select * from mfPartnerRelation where PartnerChildCode='D2512'
+     CS00034	D2512	HELLO!@ COMCENTRE	D	2012-11-29 16:37:41.277	SIEWJOO	NULL	NULL
+
+update  dcPegPTOrderscv set ListPrice=null where  OrderNo='QDS0342003' and PayableInd=1 and CompID='73467'
+---------------------------------
+---------------------------------
+select 
+distinct OrderNo 
+--into #AppcoOrderno
+from  dcPegPTOrdersMP where  
+
+ OrderClosedDate between '2015-07-01' and '2015-07-31'     
+and orderno in (
+select distinct orderno  from dcPegPTOrdersCV 
+where OrderClosedDate between '2015-07-01' and '2015-07-31'     
+and DealerCode in (select PartnerChildCode from mfPartnerRelation where partnercode='CS00020')
+and cast(ActionType as int)=3
+and CompID='74841'
+)  
+
+
+ QCV7552001
+ 
+select * from dcPegPTOrderscv_cr309554_0507 where OrderNo='QFJ0017001'
+select * from dcPegPTOrdersMP_cr309554_0507 where OrderNo='QFJ0017001'
+
+ select * from dcPegPTOrderscv_cr309554_0507 where OrderNo='QCV7552001'
+select * from dcPegPTOrdersMP_cr309554_0507 where OrderNo='QCV7552001'
+
+
+ select * from dcPegPTOrderscv_cr309554_0507 where OrderNo in ('QOQ0843001','QPD9565001','QPT8000001','QPW9728001')
+select * from dcPegPTOrdersMP_cr309554_0507 where OrderNo in ('QOQ0843001','QPD9565001','QPT8000001','QPW9728001')
+
+
+QOQ0843001
+QPD9565001
+QPT8000001
+QPW9728001

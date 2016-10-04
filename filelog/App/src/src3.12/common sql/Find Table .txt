@@ -1,0 +1,6 @@
+	 select 'drop table '+TABLE_NAME from (  select TABLE_NAME  from  INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME like 'dcPegMTOrderscv1%' group by TABLE_NAME 
+ ) mp
+
+
+select * from sysobjects where type='u'
+
