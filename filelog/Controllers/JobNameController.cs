@@ -13,11 +13,22 @@ namespace fileLog.Controllers
         // GET: api/FileName
         public dynamic Get()
         {
-
+             /* --old version
             SPlusEntities sPlusDB = new SPlusEntities();
             var filenames = sPlusDB.FW_CO_FILECONTROL.Where(x => x.PROCESSID.ToLower().Contains("upload")).GroupBy(x => x.PROCESSID).Select(x=>x.Key);
+            */
+            ScorePlusUATEntities spDB = new ScorePlusUATEntities();
+            /*  -- use the view to replace 
+            var n=  from jobname in spDB.ls_cfg_jobname 
+                    join   jobmatch in spDB.ls_cfg_jobtablematch
+                    on  jobname.jobname equals jobmatch.jobname into matchallGroup
+                    from item  in  matchallGroup.DefaultIfEmpty() 
+                    select new {  }  
+             * */
+
+            var n = spDB.ls_cfg_jobmatch_view.ToList();
+            return n;
             
-            return filenames;
         }
 
         // GET: api/FileName/5

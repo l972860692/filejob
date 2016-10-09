@@ -13,10 +13,10 @@ namespace model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SPlusEntities : DbContext
+    public partial class ScorePlusUATEntities : DbContext
     {
-        public SPlusEntities()
-            : base("name=SPlusEntities")
+        public ScorePlusUATEntities()
+            : base("name=ScorePlusUATEntities")
         {
         }
     
@@ -25,8 +25,9 @@ namespace model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<web_jobtable> web_jobtable { get; set; }
-        public virtual DbSet<FW_CO_FILECONTROL> FW_CO_FILECONTROL { get; set; }
-        public virtual DbSet<FW_CO_JOBCTRL> FW_CO_JOBCTRL { get; set; }
+        public virtual DbSet<ls_cfg_jobtablematch> ls_cfg_jobtablematch { get; set; }
+        public virtual DbSet<ls_cfg_jobname> ls_cfg_jobname { get; set; }
+        public virtual DbSet<ls_logtableresult> ls_logtableresult { get; set; }
+        public virtual DbSet<ls_cfg_jobmatch_view> ls_cfg_jobmatch_view { get; set; }
     }
 }

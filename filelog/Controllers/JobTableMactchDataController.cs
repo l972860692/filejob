@@ -5,14 +5,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using model;
-using fileLog.Models;
+using fileLog;
 
 namespace fileLog.Controllers
 {
     public class JobTableMactchDataController : ApiController
     {
         // GET: api/JobTableMactchData
-        SPlusEntities db = new SPlusEntities(); 
+      //  SPlusEntities db = new SPlusEntities(); 
+        //old verson
+        /*
         public dynamic Post(JobDataModel jobDataModel)
         {
             //getJobTableData 'MTVASSPE_UPLOADING','2016-01-01','2016-02-01'
@@ -35,6 +37,7 @@ namespace fileLog.Controllers
               }
             return true;
         }
+         * */
 
         // GET: api/JobTableMactchData/5
         public string Get(int id)

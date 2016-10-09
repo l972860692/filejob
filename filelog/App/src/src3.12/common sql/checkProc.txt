@@ -1,2 +1,0 @@
-select obj.Name ,sc.Text from syscomments sc inner join sysobjects obj on sc.id=obj.id where sc.text like '%'+'time2'+'%'
-and type='p'

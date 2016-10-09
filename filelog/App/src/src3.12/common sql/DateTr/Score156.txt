@@ -1,2 +1,0 @@
-
- select * into fhbordersAll from openrowset('sqloledb','10.54.54.156,1854';'scp1p_owner';'1234Abcd',SCP1P.dbo.fhbordersAll)

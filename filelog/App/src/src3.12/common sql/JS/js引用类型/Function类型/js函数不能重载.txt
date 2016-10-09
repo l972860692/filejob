@@ -1,1 +1,0 @@
-js中的function都是Function的对象 so function 没有重载 自动的应用下一个函数名相同的函数

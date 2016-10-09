@@ -12,9 +12,11 @@ namespace fileLog.Controllers
 {
     public class FW_CO_FILECONTROLController : Controller
     {
-        private SPlusEntities db = new SPlusEntities();
+        //old version
+       // private SPlusEntities db = new SPlusEntities();
 
         // GET: FW_CO_FILECONTROL
+        /*
         public ActionResult Index()
         {
             var m = db.FW_CO_FILECONTROL.OrderBy(x => x.RUNID).Where(x=>x.RUNID !=null).Skip(100).Take(20).ToList();
@@ -125,5 +127,6 @@ namespace fileLog.Controllers
             }
             base.Dispose(disposing);
         }
+         * */
     }
 }

@@ -5,14 +5,19 @@
 
     $http.get('/api/jobname').
   success(function (data, status, headers, config) {
-     
-      
+
+
       var menusLog = new MenuObject('1', 'Log')
       var menusfileJobLog = new MenuObject('11', 'fileJobLog')
       menusLog.childMenu.push(menusfileJobLog);
       data.forEach(function () {
-          var tempChildMenu = new MenuObject('11'+arguments[1],arguments[0] )
+          var tempChildMenu = new MenuObject('11' + arguments[1], arguments[0].jobname)
+          //  tempChildMenu.hadMatch = 
+          tempChildMenu.show = arguments[0].show;
+          tempChildMenu.sort = arguments[0].sort;
+          tempChildMenu.status = arguments[0].status;
           menusfileJobLog.childMenu.push(tempChildMenu);
+
       })
       //for test
       /* 
@@ -22,28 +27,31 @@
       menusfileJobLog.childMenu.push(menusfileJobLog_tvLog);
       menusfileJobLog.childMenu.push(menusfileJobLog_vasLog);
       */
-    
+
       $scope.menus.push(menusLog);
   }).
   error(function (data, status, headers, config) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
   });
-   // $http.get("/api/Menu").scuccess(function (data, status, headers, config) {
-       
-        //only test
-       
-  //  })
+    // $http.get("/api/Menu").scuccess(function (data, status, headers, config) {
+
+    //only test
+
+    //  })
 
 
 }])
 
-function MenuObject(id,name,icon,sort) {
+function MenuObject(id, name, icon, sort) {
     var obj = new Object();
     obj.id = id;
     obj.name = name;
-   // obj.sort = sort;   
-  //  obj.icon = icon;
+    obj.status = 0;
+    obj.sort = 0;
+    obj.show = 0;
+    // obj.sort = sort;   
+    //  obj.icon = icon;
     obj.childMenu = [];
     return obj;
 

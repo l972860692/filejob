@@ -8,24 +8,25 @@
                 <span>{{menu.name}}</span>
          
        </li>
-       <li ng-class="{active:$state.includes('app.page')}" ng-repeat="items in menu.childMenu">
-           <a ui-sref="app.filejoblog">
+       <li class="auto" ng-repeat="items in menu.childMenu">
+           <a ui-sref="app.filejoblog" class="auto">
                <span class="pull-right text-muted">
                    <i class="fa fa-fw fa-angle-right text"></i>
                    <i class="fa fa-fw fa-angle-down text-active"></i>
                </span>
-               <i class="glyphicon glyphicon-file icon"></i>
-               <span>{{items.name}}</span>
+               <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+               <span class="font-bold">{{items.name}}  </span>
+               <!--<i class="fa fa-fw fa-angle-right"></i>-->
            </a>
             <ul class="nav nav-sub dk">
-                <li class="nav-sub-header">
-                    <a href>
+                <!--<li class="nav-sub-header">
+                    <a >
                         <span  >{{items.name}}</span>
                     </a>
-                </li>
+                </li>-->
                 <li ui-sref-active="active" ng-repeat="item in items.childMenu">
-                    <a ui-sref="app.charttpl({fold:item.name})">
-                        <span>{{item.name}}</span>
+                    <a ui-sref="app.charttpl({fold:item.name})">                     
+                        <span style="color:aqua">{{item.name}}</span>
                     </a>
                 </li>
 

@@ -13,9 +13,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using fileLog.Models;
-using fileLog.Providers;
-using fileLog.Results;
+using filelog.Providers;
+using filelog.Results;
+using filelog.Models;
+using filelog;
 
 namespace fileLog.Controllers
 {

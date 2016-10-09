@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using fileLog.Models;
+using filelog.Models;
 using System.Data.Entity;
 
 namespace fileLog.Controllers
@@ -13,14 +13,17 @@ namespace fileLog.Controllers
     public class JobTableNameController : ApiController
     {
         // GET: api/FileJobTableName
-        SPlusEntities sPlusDB = new SPlusEntities();
+       // SPlusEntities sPlusDB = new SPlusEntities();
         public dynamic Get()
         {
-           
+           //old version
+           /*
             var jobnames = sPlusDB.FW_CO_FILECONTROL.Where(x => x.PROCESSID.ToLower().Contains("upload")).GroupBy(x => x.PROCESSID).Select(x => x.Key.ToUpper());
             var tablenames = sPlusDB.get_allMasterTable().Select(x => x.ToUpper());
             var fileJobTableHadMatch = sPlusDB.web_jobtable.Select(x => new { tableName = x.tablename.ToUpper(), jobName=x.jobname.ToUpper(),id= x.id,jobFileName= x.jobfilename });
             return new { jobnames, tablenames, fileJobTableHadMatch };
+            * */
+            return 1;
         }
 
         // GET: api/FileJobTableName/5
@@ -30,6 +33,8 @@ namespace fileLog.Controllers
             return "value";
         }
 
+        //old version
+        /*
         // POST: api/FileJobTableName
         public HttpResponseMessage Post(List<SaveJobTable> modes)
         {
@@ -50,7 +55,7 @@ namespace fileLog.Controllers
              return Request.CreateResponse(HttpStatusCode.OK);
              
         }
-
+        */
         // PUT: api/FileJobTableName/5
         public void Put(int id, [FromBody]string value)
         {
